@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+{% include "WirtualnyOptyk/object_list.html" with objects=page_obj.object_list class="frames" ul_class="frames"%}
+        {% if user.is_authenticated %}
+        <a class="button" href="{% url "add frame" %}">add frame</a>
+    {% endif %}
+
+
+{% endblock %}

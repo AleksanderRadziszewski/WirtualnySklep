@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products List</title>
+</head>
+<body>
+{% block content %}
+{% include "WirtualnyOptyk/object_list.html" with objects=page_obj.object_list class="product" ul_class="products" %}
+    <a class="button" href="add.html">add product</a>
+{% endblock %}
+</body>
+</html>

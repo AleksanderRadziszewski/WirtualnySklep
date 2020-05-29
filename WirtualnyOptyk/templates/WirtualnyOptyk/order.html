@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="width:500px;
+margin-left:auto;
+margin-right:auto;">
+
+    <ul style="list-style-type: none;">
+     {{ order }}
+    {% for product in user.cart.products.all %}
+            <img src="{{ product.foto.url}}"  width=200 height="150">
+            <li>Product name: {{product.name}}</li>
+            <li>Product price: {{product.price}} zł</li>
+            <li>Product quantity: {{product.stock}} szt</li>
+    {% endfor %}
+            <li>Client: {{ user.first_name }}  {{ user.last_name }}</li>
+            <li>Adress: {{ user.profile.adress }}</li>
+
+
+    </ul>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <input type="submit" value="confirm" class="btn btn-primary mr-2 btn-sm ml-4">
+    </form>
+
+    </div>
+{% endblock %}

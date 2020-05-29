@@ -1,0 +1,69 @@
+
+<div class="list-group list-group-flush{{ ul_class }} " >
+
+
+
+
+        <nav class="navbar  navbar-dark bg-success py-0 ">
+            <a href="{% url "glasses list" %}" class="float-none mr-2 navbar-brand " >Glasses List</a>
+            <a href="{% url "frames list" %}" class="float-none mr-2 navbar-brand">Frames List</a>
+            <a href="{% url "contact lenses list" %}" class="float-none mr-2 navbar-brand">Contact Lenses List</a>
+            <a href="{% url "accessories_list" %}" class="float-none mr-2 navbar-brand">Accessories List</a>
+            <a href="{% url "contact" %}" class="float-none mr-2 navbar-brand">Contact</a>
+            <form class="form-inline" action="{% url "products_list" %}">
+                <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </nav>
+<p></p>
+    {% for object in objects %}
+        <div class=" d-flex justify-content-end ">
+            <li  class="list-group-item-action list-group-item-success " data-id="{{object.id}}">
+
+            {% if object.foto != None %}
+                <img src="{{object.foto.url}}" width=140 height="90">
+            {% endif %}
+                {{ object }}-{{ object.get_type}}
+                <div class="float-right" style="margin-top: 25px">
+                    {% if user.is_superuser %}
+                    <a href="{{object.get_delete_url}}">
+                        <button class="btn btn-primary btn-sm mr-2"> Delete</button>
+                    </a>
+                    <a href="{{object.get_update_url}}">
+                        <button class="btn btn-primary btn-sm mr-2">Update</button>
+                    </a>
+                    {% endif %}
+                    <a href="{{object.get_detail_url }}">
+                        <button class="btn btn-primary btn-sm mr-2">Detail</button>
+                    </a>
+                    <button id="order" class="btn btn-primary btn-sm mr-2" data-id="{{object.id}}">Add to Cart</button>
+                </div>
+            </li>
+        </div>
+        <p></p>
+{% endfor %}
+    <footer>
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="current">
+                    Page{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+                {% endif %}
+            </span>
+        </div>
+    </footer>
+
+</div>
+
+
+
+

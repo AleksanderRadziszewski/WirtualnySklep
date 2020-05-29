@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="text-center">
+        {% for kp in object.cartproducts_set.all %}
+            {% if kp.product.foto is not None %}
+                <img src="{{ kp.product.foto.url }}" width=200 height="150">
+            {% endif %}
+            <br>
+            Name: {{ kp.product.name }}<br>
+            Price: {{ kp.product.price }} zł<br>
+            Stock: {{ kp.quantity }}<br>
+            <form method="POST" action="/change_quantity/{{ kp.product.id }}">
+                {% csrf_token %}
+                <input id="increase" class="btn btn-primary btn-sm mr-2" type="submit" value="+" name="type">
+                <input id="decrease" class="btn btn-primary btn-sm mr-2" type="submit" value="-" name="type">
+                <input id="decrease" class="btn btn-primary btn-sm mr-2" type="submit" value="delete" name="type">
+            </form><br>
+        {% endfor %}
+        <a href="{% url "order" %}" >
+            <button class="btn btn-primary btn-sm mr-2">Go to order</button>
+        </a>
+    </div>
+{% endblock %}

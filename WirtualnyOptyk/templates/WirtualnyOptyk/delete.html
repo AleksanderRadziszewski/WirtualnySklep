@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        <nav class="navbar  navbar-dark bg-success py-0">
+            <a href="{% url "glasses list" %}" class="float-none mr-2 navbar-brand " >Glasses List</a>
+            <a href="{% url "frames list" %}" class="float-none mr-2 navbar-brand">Frames List</a>
+            <a href="{% url "contact lenses list" %}" class="float-none mr-2 navbar-brand">Contact Lenses List</a>
+            <a href="{% url "accessories_list" %}" class="float-none mr-2 navbar-brand">Accessories List</a>
+            <a href="{% url "contact" %}" class="float-none mr-2 navbar-brand">Contact</a>
+            <form class="form-inline" action="{% url "products_list" %}">
+                <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </nav>
+    </div>
+<p></p>
+    Are you sure that you want delete {{ object.name }}?
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"value="delete">
+    </form>
+{% endblock %}

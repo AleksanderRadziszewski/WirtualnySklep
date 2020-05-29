@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="text-align: center">
+    {% if not user.is_authenticated %}
+        <form method='post' style="text-align: center">
+    {% csrf_token %}
+ {{ form }}
+      <input class="btn btn-primary mr-2" type="submit" value="Sign in">
+  </form>
+        <a  href="{% url "create profile" %}">
+        <button class="btn btn-primary mr-2">create profile</button>
+        </a>
+    {% endif %}
+
+    </div>
+
+{% endblock %}

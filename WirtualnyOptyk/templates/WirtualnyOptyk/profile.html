@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <head>
+        <style type="text/css">
+    form {
+        text-align: right;
+    }
+    input {
+        width: 100px;
+    }
+    </style>
+    </head>
+    <div>
+        <nav class="navbar  navbar-dark bg-success py-0" style="color: white"> Your account:</nav>
+    <ul style="list-style-type: none; margin-left: -20px" >
+        <li>Name: {{ object.user.first_name }}</li>
+        <li>Last name:{{ object.user.last_name }}</li>
+        <li>Username:{{ object.user.username }}</li>
+        <li>Email:{{ object.user.email}}</li>
+        <li>Adress:{{ object.adress }}</li>
+        <li>Last login:{{ object.user.last_login}}</li>
+        <a href="{% url "create profile" %}"><button class="btn btn-primary mr-2 btn-sm">modify</button></a>
+
+    </ul>
+        <nav class="navbar  navbar-dark bg-success py-0" style="color: white"> Your orders:</nav>
+    <ul style="list-style-type: none; margin-left: -20px">
+            {% for order in orders %}
+
+            <li>Order number: {{ order.id }}</li>
+
+              {% for product in order.products.all %}
+            Client order product:{{ product.name}} {{ product.stock }} szt {{ product.stock }}*{{ product.price }} zł
+                {% endfor %}
+                {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

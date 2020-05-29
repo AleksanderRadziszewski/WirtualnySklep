@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Glasses List</title>
+</head>
+<body>
+{% block content %}
+    <form>
+        {{form}}
+        <input type="submit" value="Search" class="btn btn-primary btn-sm mr-2">
+    </form>
+{% include "WirtualnyOptyk/object_list.html" with objects=page_obj.object_list class="glasses" ul_class="glasses"%}
+    <a class="button" href={% url "add glasses" %}>add glasses</a>
+{% endblock %}
+</body>
+</html>

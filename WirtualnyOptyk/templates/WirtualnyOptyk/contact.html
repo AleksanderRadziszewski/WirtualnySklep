@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+    .jumbotron{
+        background-color: darkseagreen;
+        color: white;
+    }
+    </style>
+    <div>
+        <nav class="navbar  navbar-dark bg-success py-0" >
+            <a href="{% url "glasses list" %}" class="float-none mr-2 navbar-brand " >Glasses List</a>
+            <a href="{% url "frames list" %}" class="float-none mr-2 navbar-brand">Frames List</a>
+            <a href="{% url "contact lenses list" %}" class="float-none mr-2 navbar-brand">Contact Lenses List</a>
+            <a href="{% url "accessories_list" %}" class="float-none mr-2 navbar-brand">Accessories List</a>
+            <a href="{% url "contact" %}" class="float-none mr-2 navbar-brand">Contact</a>
+            <form class="form-inline" action="{% url "products_list" %}">
+                <input name="name" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+
+        </nav>
+    </div>
+<p></p>
+<div class="container" style="text-align: center">
+    <div class="page-header">
+        <h5>Contact to us</h5>
+    </div>
+    <div class="jumbotron" style="text-decoration-color: white">
+        <p>Salon Optyczny Aleksaander Radziszewski Sp z.o.o
+            ul.Flaszki 3/4<br>
+            62-510 Konin<br>
+            email: radziszewski.aleksander@gmail.com <br>
+            tel:666-555-444</p>
+    </div>
+</div>
+
+{% endblock %}
